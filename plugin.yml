@@ -3,3 +3,6 @@ version: 0.0.1
 author: QuickScythe
 description: why
 main: com.mineswine.arcade.Main
+commands:
+  msa:
+    aliases: ["ms","mineswine","mineswinearcade","arcade"]
