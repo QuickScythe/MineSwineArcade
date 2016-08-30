@@ -28,8 +28,12 @@ public class Utils {
 		  try {
 		    URL url = new URL("jar", "", "file:" + file.getAbsolutePath() + "!/");
 		    URLClassLoader loader = new URLClassLoader(new URL[]{url});
-
-		    Class<?> clazz = loader.loadClass("addon.mineswine.arcade.Main");
+		    Class<?> clazz;
+		    try{
+		    	String s = Main.getPlugin().getConfig().getString("addons." + file.getName().split("jar") + "main");
+		    	clazz = loader.loadClass(s);
+		    } catch (Exception ex){ clazz = loader.loadClass("addon.mineswine.arcade.Main"); }
+		    
 		    Object instance = clazz.newInstance();
 		    Method open = clazz.getMethod("enable");
 		    open.invoke(instance);
