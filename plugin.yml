@@ -1,0 +1,5 @@
+name: MSA
+version: 0.0.1
+author: QuickScythe
+description: why
+main: com.mineswine.arcade.Main
