@@ -16,6 +16,7 @@ import com.mineswine.arcade.Main;
 public class Utils {
 	
 	public static List<String> addons = new ArrayList<>();
+	private static List<Game> games = new ArrayList<>();
 	
 	public static void loadAddons(){
 		File directory = new File(Main.getPlugin().getDataFolder().getPath() + "/addons");
@@ -100,6 +101,10 @@ public class Utils {
 		  Bukkit.broadcastMessage(colorize("&e&lMSA &f>&7 Enabled addon &f" + addon + "&7."));
 		
 	
+		
+	}
+
+	public static void startGameTicks() {
 		
 	}
 
