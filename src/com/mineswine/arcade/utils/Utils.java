@@ -67,4 +67,40 @@ public class Utils {
 		sender.sendMessage(colorize("&e&lAddons &f> " + s));
 	}
 
+	public static void reloadAddons() {
+		addons.clear();
+		loadAddons();
+	}
+
+	public static void reloadAddon(String addon) {
+		addons.remove(addon);
+
+		File directory = new File(Main.getPlugin().getDataFolder().getPath() + "/addons");
+		if(!directory.exists())
+			directory.mkdirs();
+		  try {
+		    URL url = new URL("jar", "", "file:" + directory.getAbsolutePath() + addon + ".jar!/");
+		    URLClassLoader loader = new URLClassLoader(new URL[]{url});
+		    Class<?> clazz = loader.loadClass("addon.mineswine.arcade.Main");
+		    
+		    Object instance = clazz.newInstance();
+		    Method open = clazz.getMethod("enable");
+		    try{
+		    	open.invoke(instance);
+		    } catch (Exception ex){
+		    	Bukkit.getConsoleSender().sendMessage(colorize("&4[ERROR] &e&lMSA&f > &7The method 'enable' couldn't be run. Below is the error."));
+		    	ex.printStackTrace();
+		    }
+		    
+		    loader.close();
+		  } catch (Exception exception) {
+		    exception.printStackTrace();
+		  }
+		  addons.add(addon);
+		  Bukkit.broadcastMessage(colorize("&e&lMSA &f>&7 Enabled addon &f" + addon + "&7."));
+		
+	
+		
+	}
+
 }

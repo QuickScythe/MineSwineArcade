@@ -26,14 +26,29 @@ public class MSACommand implements CommandExecutor {
 				sender.sendMessage(Utils.colorize(
 						"&a------ &7MineSwine Arcade (MSA) &a------\n \n"
 						+ "&7 > /msa - Shows this message.\n"
-//						+ "&7 > /msa reload - reloads all addons.\n"
-//						+ "&7 > /msa reload <addon> - reloads specified addon.\n"
+						+ "&7 > /msa reload - reloads all addons.\n"
+						+ "&7 > /msa reload <addon> - reloads specified addon.\n"
 						+ "&7 > /msa list - Lists all loaded addons\n \n"
 						+ "&a---------------------------------"));
 			}
 			if(args.length == 1){
 				if(args[0].equalsIgnoreCase("list")){
 					Utils.sendAddonsList(sender);
+				}
+				if(args[0].equalsIgnoreCase("reload")){
+					Utils.reloadAddons();
+				}
+				
+			}
+			
+			if(args.length == 2){
+				if(args[0].equalsIgnoreCase("reload")){
+					if(Utils.addons.contains(args[1])){
+						Utils.reloadAddon(args[1]);
+					} else {
+						sender.sendMessage("&e&lMSA &f>&7 Couldn't load addon. Reason:");
+						sender.sendMessage("&c&lERROR &f>&7 Couldn't find addon '&f" + args[1] + "&7'.");
+					}
 				}
 			}
 		}
