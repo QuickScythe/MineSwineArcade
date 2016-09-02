@@ -5,6 +5,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
 import com.mineswine.arcade.Main;
+import com.mineswine.arcade.utils.Game;
+import com.mineswine.arcade.utils.MSAAPI;
 import com.mineswine.arcade.utils.Utils;
 
 public class MSACommand implements CommandExecutor {

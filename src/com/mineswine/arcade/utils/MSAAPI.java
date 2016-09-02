@@ -1,5 +1,9 @@
 package com.mineswine.arcade.utils;
 
+import org.bukkit.event.Listener;
+
+import com.mineswine.arcade.Main;
+
 public class MSAAPI {
 	
 	MSAAPI instance;
@@ -14,11 +18,19 @@ public class MSAAPI {
 	}
 	
 	public Game getGame(){
-		if(game == null){
-			game = new Game();
-			return game;
-		} else {
-			return game;
-		}
+		return game;
+		
+	}
+
+	
+
+	public void createGame(Game game) {
+		this.game = game;
+		Utils.addGame(game);
+				
+	}
+
+	public void registerNewListener(Listener listener) {
+		Main.getPlugin().getServer().getPluginManager().registerEvents(listener, Main.getPlugin());
 	}
 }

@@ -10,13 +10,14 @@ import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.event.block.BlockBreakEvent;
 
 import com.mineswine.arcade.Main;
 
 public class Utils {
 	
 	public static List<String> addons = new ArrayList<>();
-	private static List<Game> games = new ArrayList<>();
+	public static List<Game> games = new ArrayList<>();
 	
 	public static void loadAddons(){
 		File directory = new File(Main.getPlugin().getDataFolder().getPath() + "/addons");
@@ -104,8 +105,19 @@ public class Utils {
 		
 	}
 
+	@SuppressWarnings("deprecation")
 	public static void startGameTicks() {
-		
+		Bukkit.getScheduler().runTaskTimer(Main.getPlugin(), new GameTimer(), 10, 10);
 	}
+	
+	protected static void addGame(Game game){
+		games.add(game);
+	}
+
+	protected static List<Game> getGames() {
+		return games;
+	}
+
+	
 
 }
